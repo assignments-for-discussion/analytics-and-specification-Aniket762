@@ -9,14 +9,20 @@ function getStandardDeviation(numbers) {
   return standardDeviation;
 }
 
+function filterOnBasisOfBounds(numbers, lowerBound, upperBound) {
+  var values = numbers.concat();
+
+  return values.filter((x) => x < upperBound && x >= lowerBound);
+}
+
 function filterOutlierWithSd(numbers) {
   var values = numbers.concat();
 
   const averageAll = values.reduce((p, c) => p + c, 0) / values.length;
   const standardDeviation = getStandardDeviation(values);
-  const lb = averageAll - 2 * standardDeviation;
-  const ub = averageAll + 2 * standardDeviation;
-  var filteredValues = values.filter((x) => x <= ub && x >= lb);
+  const lowerBound = averageAll - 2 * standardDeviation;
+  const upperBound = averageAll + 2 * standardDeviation;
+  var filteredValues = filterOnBasisOfBounds(values, lowerBound, upperBound);
 
   return filteredValues;
 }
