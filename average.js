@@ -16,7 +16,8 @@ function filterOutlierWithSd(numbers) {
   const standardDeviation = getStandardDeviation(values);
   const lowerBound = averageAll - 2 * standardDeviation;
   const upperBound = averageAll + 2 * standardDeviation;
-  var filteredValues = values.filter((x) => x <= upperBound && x >= lowerBound);
+  const conditionToFilter = x <= upperBound && x >= lowerBound;
+  var filteredValues = values.filter((x) => conditionToFilter);
 
   return filteredValues;
 }
